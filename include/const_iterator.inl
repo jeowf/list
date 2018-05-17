@@ -1,5 +1,5 @@
-#ifndef ITERATOR
-#define ITERATOR
+#ifndef CONST_ITERATOR
+#define CONST_ITERATOR
 
 template<typename T>
 typename list<T>::Object & list<T>::iterator::operator*() const{
@@ -41,5 +41,5 @@ bool sc::list<T>::const_iterator::operator==(const const_iterator & rhs ) const{
  bool sc::list<T>::const_iterator::operator!=(const const_iterator & rhs ) const{
     return this->current != rhs.current;
   }
-  
+
 #endif
