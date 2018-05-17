@@ -1,7 +1,7 @@
 template <typename T>
 class list {
 	private:
-			struct Node{
+		struct Node{
 				T data;
 				Node *prev;
 				Node *next;
@@ -36,9 +36,10 @@ class list {
 				iterator & operator++();
 				iterator operator++(int);
 				iterator & operator--();
-				iterator operator -- (int);
+				iterator operator-- (int);
+
 			protected:
-				Node *current;
+
 				iterator( Node * p ) : const_iterator( p );
 				friend class List<Object>;
 		}
@@ -80,3 +81,7 @@ class list {
 		int m_size;
 		Node *m_head;
 		Node *m_tail;
+}
+
+#include "iterator.inl"
+#include "const_iterator.inl"
