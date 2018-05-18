@@ -6,8 +6,8 @@ list<T>::const_iterator::const_iterator(){
 }
 
 template<typename T>
-typename list<T>::Node & list<T>::const_iterator::operator*() const{
-    return this->current;
+typename list<T>::Node * list<T>::const_iterator::operator*() const{
+    return current ;
 }
 
 template<typename T>
@@ -18,7 +18,7 @@ typename list<T>::const_iterator & list<T>::const_iterator::operator++(){
 
 template<typename T>
 typename list<T>::const_iterator list<T>::const_iterator::operator++(int){
-    iterator temp = *this;
+    const_iterator temp = *this;
     this->current = (this->current)->next;
     return *temp;
 }
@@ -31,7 +31,7 @@ typename list<T>::const_iterator & list<T>::const_iterator::operator--(){
 
 template<typename T>
 typename list<T>::const_iterator list<T>::const_iterator::operator--(int){
-    iterator temp = *this;
+    const_iterator temp = *this;
     this->current = (this->current)->prev;
     return *temp;
 }

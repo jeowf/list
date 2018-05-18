@@ -2,12 +2,12 @@
 #define ITERATOR
 
 template<typename T>
-typename list<T>::Node & list<T>::iterator::operator*() const{
+typename list<T>::Node * list<T>::iterator::operator*() const{
     return this->current;
 }
 
 template<typename T>
-typename list<T>::Node & list<T>::iterator::operator*(){
+typename list<T>::Node * list<T>::iterator::operator*(){
      return this->current;
 }
 

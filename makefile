@@ -1,5 +1,5 @@
 CC = g++
-PROG = vector
+PROG = list
 CPPFLAGS = -O -Wall -std=c++11 -I $(HEADER_DIR)
 SRC_PATH = src
 BUILD_PATH = .
@@ -10,7 +10,7 @@ HEADER_DIR  = ./include/
 SRC_DIR     = ./src/
 BIN_DIR     = ./bin/
 
-vector: $(OBJS)
+list: $(OBJS)
 	$(CC) $(OBJS) -o $(PROG)
 	mkdir -p $(BIN_DIR)
 	mv *.o $(BIN_DIR)

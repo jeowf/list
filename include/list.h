@@ -18,7 +18,7 @@ class list {
 		class const_iterator {
 			public:
 				const_iterator();
-				Node & operator* () const;
+				Node * operator* () const;
 				const_iterator & operator++();
 				const_iterator operator++(int);
 				const_iterator & operator--();
@@ -35,8 +35,8 @@ class list {
 		class iterator : public const_iterator{
 			public:
 				iterator(): const_iterator(){}
-				Node & operator*() const;
-				Node & operator*();
+				Node * operator*() const;
+				Node * operator*();
 
 				iterator & operator++();
 				iterator operator++(int);
