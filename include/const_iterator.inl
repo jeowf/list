@@ -2,7 +2,7 @@
 #define CONST_ITERATOR
 
 template<typename T>
-typename list<T>::Object & list<T>::iterator::operator*() const{
+typename list<T>::Node & list<T>::const_iterator::operator*() const{
     return this->current;
 }
 
@@ -33,12 +33,12 @@ typename list<T>::const_iterator list<T>::const_iterator::operator--(int){
 }
 
 template<typename T>
-bool sc::list<T>::const_iterator::operator==(const const_iterator & rhs ) const{
+bool list<T>::const_iterator::operator==(const const_iterator & rhs ) const{
    return this->current == rhs.current;
  }
 
- template<typename T>
- bool sc::list<T>::const_iterator::operator!=(const const_iterator & rhs ) const{
+template<typename T>
+ bool list<T>::const_iterator::operator!=(const const_iterator & rhs ) const{
     return this->current != rhs.current;
   }
 
