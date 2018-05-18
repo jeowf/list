@@ -2,6 +2,10 @@
 #define CONST_ITERATOR
 
 template<typename T>
+list<T>::const_iterator::const_iterator(){
+}
+
+template<typename T>
 typename list<T>::Node & list<T>::const_iterator::operator*() const{
     return this->current;
 }

@@ -90,3 +90,4 @@ class list {
 
 #include "iterator.inl"
 #include "const_iterator.inl"
+#include "list.inl"
