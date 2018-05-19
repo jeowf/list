@@ -1,5 +1,5 @@
 # List
-Implementação do std::list para a disciplina de Estrutura Básica de Dados I(EDB I)
+Implementação do std::list para a disciplina de Estrutura Básica de Dados I (EDB I)
 
 **Desenvolvido por:**
 
