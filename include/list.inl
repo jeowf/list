@@ -11,12 +11,44 @@ namespace ls{
         m_tail->prev = m_head;
     }
 
+    template<typename T>
+    list<T>::list( size_t count ): m_size (count),
+                          m_head (new Node()),
+                          m_tail (new Node()) {
+      m_head->prev = nullptr;
+      m_tail->next = nullptr;
+      m_head->next = m_tail;
+      m_tail->prev = m_head;
+      T *generic = new T();
+      for(size_t i = 0; i < count; i++){
+        push_back(*generic);
+      }
+    }
+
     template <typename T>
-    list<T>::list(std::initializer_list<T> il ) : 
+    template <typename InputItr>
+		list<T>::list(InputItr first, InputItr last): m_size ((last - first)),
+                          m_head (new Node()),
+    	                    m_tail (new Node()){
+    m_head->prev = nullptr;
+    m_tail->next = nullptr;
+    m_head->next = m_tail;
+    m_tail->prev = m_head;
+    size_t size = last - first;
+    for(size_t i = 0; i < size; i++){
+        Node * tmp = new Node();
+        tmp->data = *(first+i);
+        push_back(tmp->data);
+    }
+
+    }
+
+    template <typename T>
+    list<T>::list(std::initializer_list<T> il ) :
                    m_size (il.size()),
                    m_head (new Node()),
                    m_tail (new Node()) {
-        
+
         m_head->prev = nullptr;
         m_tail->next = nullptr;
         m_head->next = m_tail;
@@ -64,6 +96,18 @@ namespace ls{
     }
 
     template <typename T>
+    typename list<T>::list & list<T>::operator=( std::initializer_list<T> ilist){
+      clear();
+      m_size = ilist.size();
+      for (size_t i = 0; i < ilist.size(); i++){
+          Node * tmp = new Node();
+          tmp->data = *(ilist.begin()+i);
+          push_back(tmp->data);
+      }
+      return *this;
+    }
+
+    template <typename T>
     typename list<T>::iterator list<T>::begin(){
         return iterator((this->m_head)->next);
     }
@@ -96,7 +140,7 @@ namespace ls{
     template <typename T>
     void list<T>::clear(){
         while(m_head->next != m_tail)
-            pop_back();        
+            pop_back();
     }
 
     template <typename T>
@@ -200,7 +244,7 @@ namespace ls{
         if(itr == end()){
           return nullptr;
         }
-        
+
         while(iter != itr){
             if(iter == end()){
                 return nullptr;
@@ -218,6 +262,37 @@ namespace ls{
 
         return (tmp->next);
 
+    }
+
+    template <typename T>
+    template < typename InItr>
+		typename list<T>::iterator list<T>::insert( iterator pos, InItr first, InItr last ){
+      typename list<T>::iterator iter = begin();
+      typename list<T>::iterator gen = begin();
+
+      size_t size = (last - first);
+      if(pos == cend()){
+          return nullptr;
+      }
+
+      while(iter != pos){
+          if(iter == end()){
+              return nullptr;
+          }
+          iter++;
+      }
+
+      for (size_t i = 0; i < size; i++){
+          Node * tmp = new Node();
+          tmp->data = *(first+i);
+          tmp->next = ((*iter)->prev)->next;
+          tmp->prev = ((*iter)->prev);
+          ((*iter)->prev)->next = tmp;
+          ((*iter)->prev) = tmp;
+          m_size++;
+          gen = iter;
+      }
+      return ((*gen)->next);
     }
 
     template <typename T>
@@ -276,7 +351,7 @@ namespace ls{
 
         while(iter != first){
             if(iter == end())
-                return nullptr; 
+                return nullptr;
             iter++;
         }
         while(iter != last){
@@ -312,7 +387,7 @@ namespace ls{
         //         return false;
         // }
 
-        return true;            
-        
+        return true;
+
     }
 }

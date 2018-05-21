@@ -64,14 +64,18 @@ namespace ls{
 
 		list();
 
-		list( const std::initializer_list<T> il );
+		explicit list( size_t count );
 
-		//template <typename InputItr>
-		//list(InputItr begin, InputItr end);
+		template <typename InputItr>
+		list(InputItr first, InputItr last);
+
+		list( const std::initializer_list<T> ilist );
 
 		~list();
 		list(const list &);
 		list & operator=(const list &);
+
+		list & operator=(std::initializer_list<T> ilist);
 
 		iterator begin();
 		const_iterator cbegin() const;
@@ -97,6 +101,8 @@ namespace ls{
 
 		void assign (std::initializer_list<T> ilist);
 		iterator insert(const_iterator itr, const T & value);
+		template < typename InItr>
+		iterator insert( iterator pos, InItr first, InItr last );	
 		iterator insert(const_iterator pos,std::initializer_list<T> ilist);
 		iterator erase(const_iterator itr);
 		iterator erase(const_iterator first, const_iterator last);
@@ -105,7 +111,7 @@ namespace ls{
 		bool operator==(const list & rhs);
 		//bool operator!=(const list & rhs);
 
-		
+
 	};
 }
 
