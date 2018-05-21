@@ -1,6 +1,7 @@
 #ifndef LIST
 #define LIST
 
+#include <iostream>
 #include <initializer_list>
 
 namespace ls{

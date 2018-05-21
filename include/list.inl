@@ -12,28 +12,22 @@ namespace ls{
     }
 
     template <typename T>
-    list<T>::list( const std::initializer_list<T> il ) : 
+    list<T>::list(std::initializer_list<T> il ) : 
                    m_size (il.size()),
                    m_head (new Node()),
                    m_tail (new Node()) {
         
-std::cout << "VTN";
-//         m_head->prev = nullptr;
-//         m_tail->next = nullptr;
+        m_head->prev = nullptr;
+        m_tail->next = nullptr;
+        m_head->next = m_tail;
+        m_tail->prev = m_head;
 
 
-
-//         //typename list<T>::iterator temp = begin();
-
-//         auto aux(m_head);
-        //auto il_begin(il.begin);
-
-        // for(size_t i = 0; i < il.size(); i++){
-        //     Node * tmp = new Node( *(il.begin()+i) , aux, m_tail);
-        //     //std::cout << tmp->data << " ";
-        //     //aux->next = tmp;
-        //     //aux = tmp; 
-        // }
+        for (size_t i = 0; i < il.size(); i++){
+            Node * tmp = new Node();
+            tmp->data = *(il.begin()+i);
+            push_back(tmp->data);
+        }
 
     }
 
