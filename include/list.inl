@@ -210,10 +210,11 @@ namespace ls{
     }
 
     template <typename T>
-    void list<T>::assign(const T& value){
-        typename list<T>::iterator temp;
-        for(temp = begin(); temp != end(); temp++){
+    void list<T>::assign(size_t count,const T& value){
+        typename list<T>::iterator temp = begin();
+        for(size_t i = 0; i < count; i++){
             (*temp)->data = value;
+            temp++;
         }
     }
 
