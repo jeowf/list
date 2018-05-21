@@ -102,14 +102,14 @@ namespace ls{
 		void assign (std::initializer_list<T> ilist);
 		iterator insert(const_iterator itr, const T & value);
 		template < typename InItr>
-		iterator insert( iterator pos, InItr first, InItr last );	
+		iterator insert( iterator pos, InItr first, InItr last );
 		iterator insert(const_iterator pos,std::initializer_list<T> ilist);
 		iterator erase(const_iterator itr);
 		iterator erase(const_iterator first, const_iterator last);
 		const_iterator find(const T & value) const;
 
 		bool operator==(const list & rhs);
-		//bool operator!=(const list & rhs);
+		bool operator!=(const list & rhs);
 
 
 	};

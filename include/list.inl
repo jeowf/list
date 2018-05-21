@@ -44,8 +44,8 @@ namespace ls{
     }
 
     template <typename T>
-    list<T>::list(std::initializer_list<T> il ) :
-                   m_size (il.size()),
+    list<T>::list(std::initializer_list<T> ilist ) :
+                   m_size (ilist.size()),
                    m_head (new Node()),
                    m_tail (new Node()) {
 
@@ -55,9 +55,9 @@ namespace ls{
         m_tail->prev = m_head;
 
 
-        for (size_t i = 0; i < il.size(); i++){
+        for (size_t i = 0; i < ilist.size(); i++){
             Node * tmp = new Node();
-            tmp->data = *(il.begin()+i);
+            tmp->data = *(ilist.begin()+i);
             push_back(tmp->data);
         }
 
@@ -375,19 +375,41 @@ namespace ls{
 
     template <typename T>
     bool list<T>::operator==(const list & rhs){
-        // if (rhs.m_size != m_size){
-        //     return false;
-        // }
+        if (rhs.m_size != m_size){
+            return false;
+        }
 
-        // const_iterator lhs_i = cbegin();
-        // const_iterator rhs_i = rhs.cbegin();
+        const_iterator lhs_i = cbegin();
+        const_iterator rhs_i = rhs.cbegin();
 
-        // while (lhs_i != cend()){
-        //     if ((*lhs_i)->data != (*rhs_i)->data)
-        //         return false;
-        // }
+        while (lhs_i != cend()){
+            if ((*lhs_i)->data != (*rhs_i)->data)
+                return false;
+            lhs_i++;
+            rhs_i++;
+        }
 
         return true;
+
+    }
+
+    template <typename T>
+    bool list<T>::operator!=(const list & rhs){
+        if (rhs.m_size != m_size){
+            return true;
+        }
+
+        const_iterator lhs_i = cbegin();
+        const_iterator rhs_i = rhs.cbegin();
+
+        while (lhs_i != cend()){
+            if ((*lhs_i)->data != (*rhs_i)->data)
+                return true;
+            lhs_i++;
+            rhs_i++;
+        }
+
+        return false;
 
     }
 }

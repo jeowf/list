@@ -4,7 +4,8 @@
 
 int main(){
 
-      //ls::list<int> my_list2 = {0, 1, 2};
+      //ls::list<int> my_list2({0, 1, 2});
+      //ls::list<int> my_list3({0, 1, 5});
       //ls::list<int> l2(10);
       //ls::list<int> l1 = l2;
 
@@ -33,7 +34,7 @@ int main(){
         iter++;
         iter2++;
         //mylist.insert(iter,&foo[0],&foo[5]);
-        std::cout << ' ' <<  (*iter)->data<< std::endl;
+        //std::cout << ' ' <<  (my_list2!=my_list3)<< std::endl;
 
         std::cout << "mylist contains:";
         for (ls::list<int>::iterator it=mylist.begin(); it!=mylist.end(); it++)
