@@ -2,30 +2,31 @@
 #define LIST
 
 #include <iostream>
+#include <stdexcept>
 #include <initializer_list>
 
 namespace ls{
 
 	template <typename T>
 	/*! @class list
-	 *
-	 * @brief A class that manages actions on a dinamic list
+	*
+	* @brief A class that manages actions on a dinamic list
 	*/
 	class list {
 	private:
 		/*! @struct Node
-		 *
-		 * @brief A struct that represents the nodes of the list
+		*
+		* @brief A struct that represents the nodes of the list
 		*/
 		struct Node{
 			T data;/*!< Variable to storage the current content of node */
 			Node *prev;/*!< Variable to storage the previous node */
 			Node *next;/*!< Variable to storage the next node */
 			/*!
-			 * @brief Node Constructor
-			 *
-			 * Initializes a Node
-			 *
+			* @brief Node Constructor
+			*
+			* Initializes a Node
+			*
 			*/
 			Node(const T & d = T(), Node * p = nullptr,Node * n = nullptr)
 				:data(d),prev(p),next(n){}
@@ -38,25 +39,25 @@ namespace ls{
 
 	public:
 		/*! @class list
-		 *
-		 * @brief A class that manage the acess the elements in a list
+		*
+		* @brief A class that manage the acess the elements in a list
 		*/
 		class const_iterator {
 		public:
 			/*!
-			 * @brief Const_Iterator Constructor
-			 *
-			 * Initializes the iterator
-			 *
+			* @brief Const_Iterator Constructor
+			*
+			* Initializes the iterator
+			*
 			*/
 			const_iterator();
 			/*!
-      * @brief '*' Overload
-      *
-      * Overload '*' operator to take the current element const in list
-      *
-      * @return Return a const reference to the object in the position poited by the iterator
-      */
+      		* @brief '*' Overload
+      		*
+      		* Overload '*' operator to take the current element const in list
+      		*
+      		* @return Return a const reference to the object in the position poited by the iterator
+      		*/
 			Node * operator* () const;
 			/*!
 			* @brief '++' Overload
@@ -75,28 +76,28 @@ namespace ls{
 			*/
 			const_iterator operator++(int);
 			/*!
-      * @brief '--' Overload
-      *
-      * Overload '--'operator to back iterator to the previous location within the list
-      *
-      * @return Return a reference to the object in the position poited by the iterator
-      */
+      		* @brief '--' Overload
+      		*
+      		* Overload '--'operator to back iterator to the previous location within the list
+      		*
+      		* @return Return a reference to the object in the position poited by the iterator
+      		*/
 			const_iterator & operator--();
 			/*!
-      * @brief '--' Overload
-      *
-      * Overload '--' operator to return the current element in the list and back iterator to the previous location within the list
-      *
-      * @return Return a reference to the object in the previous position poited by the iterator
-      */
+ 	  		* @brief '--' Overload
+      		*
+      		* Overload '--' operator to return the current element in the list and back iterator to the previous location within the list
+      		*
+      		* @return Return a reference to the object in the previous position poited by the iterator
+      		*/
 			const_iterator operator--(int);
 			/*!
-      * @brief '==' Overload
-      *
-      * Overload '==' operator to verify if two iterators points to same localization in the list
-      *
-      * @return Return true if two iterators points to same localization in the list
-      */
+      		* @brief '==' Overload
+      		*
+      		* Overload '==' operator to verify if two iterators points to same localization in the list
+      		*
+      		* @return Return true if two iterators points to same localization in the list
+      		*/
 			bool operator==(const const_iterator & rhs) const;
 			/*!
 			* @brief '!=' Overload
@@ -113,27 +114,27 @@ namespace ls{
 			friend class list<T>;
 		};
 		/*! @class iterator
-		 *
-		 * @brief A class that manage the acess the elements in a list
+		*
+		* @brief A class that manage the acess the elements in a list
 		*/
 		class iterator : public const_iterator{
 		public:
 			iterator(): const_iterator(){}
 			/*!
-      * @brief '*' Overload
-      *
-      * Overload '*' operator to take the current element const in list
-      *
-      * @return Return a const reference to the object in the position poited by the iterator
-      */
+      		* @brief '*' Overload
+      		*
+      		* Overload '*' operator to take the current element const in list
+      		*
+      		*		 @return Return a const reference to the object in the position poited by the iterator
+      		*/
 			Node * operator*() const;
 			/*!
-      * @brief '*' Overload
-      *
-      * Overload '*' operator to take the current element const in list
-      *
-      * @return Return a reference to the object in the position poited by the iterator
-      */
+      		* @brief '*' Overload
+      		*
+      		* Overload '*' operator to take the current element const in list
+      		*
+      		* @return Return a reference to the object in the position poited by the iterator
+      		*/
 			Node * operator*();
 			/*!
 			* @brief '++' Overload
@@ -152,12 +153,12 @@ namespace ls{
 			*/
 			iterator operator++(int);
 			/*!
-      * @brief '--' Overload
-      *
-      * Overload '--'operator to back iterator to the previous location within the list
-      *
-      * @return Return a reference to the object in the position poited by the iterator
-      */
+      		* @brief '--' Overload
+      		*
+      		* Overload '--'operator to back iterator to the previous location within the list
+      		*
+      		* @return Return a reference to the object in the position poited by the iterator
+      		*/
 			iterator & operator--();
 			/*!
 			* @brief '--' Overload
@@ -173,17 +174,17 @@ namespace ls{
 			iterator( Node * p ) : const_iterator( p ){}/*!< Initializes a iterator constructor*/
 			friend class list<T>;
 		};
-	  /*!
-	  * @brief List Constructor
-	  *
-	  * Initializes the list with a empty values;
-	  */
+	  	/*!
+	  	* @brief List Constructor
+	  	*
+	  	* Initializes the list with a empty values;
+	  	*/
 		list();
 		/*!
-	  * @brief List Constructor size
-	  *
-	  * Initializes the list with a 'count' default-inserted instances of T;
-	  */
+	  	* @brief List Constructor size
+	  	*
+	  	* Initializes the list with a 'count' default-inserted instances of T;
+	  	*/
 		explicit list( size_t count );
 		/*!
 		* @brief List Range Constructor
@@ -197,12 +198,12 @@ namespace ls{
 		list(InputItr first, InputItr last);
 
 		/*!
-    * @brief List initializer_list Constructor
-    *
-    * Initializes the list with a initializer_list elements
+    	* @brief List initializer_list Constructor
+    	*
+    	* Initializes the list with a initializer_list elements
 		*
 		*@param ilist list of elements
-    */
+    	*/
 		list( const std::initializer_list<T> ilist );
 		/*!
 		* @brief List Destructor
@@ -211,32 +212,32 @@ namespace ls{
 		*/
 		~list();
 		/*!
-	 * @brief List Copy Constructor
-	 *
-	 * Initializes the list with the elements of other list
-	 *
-	 *@param other list object
-	 */
+	 	* @brief List Copy Constructor
+	 	*
+	 	* Initializes the list with the elements of other list
+	 	*
+	 	*@param other list object
+	 	*/
 		list(const list &);
 		/*!
-    * @brief '=' Overload
-    *
-    * Overload '=' operator to replace the content with the copy of the alterable content of other list
-    *
-    * @param rhs list object
-    *
-    * @return Return the new content from other list
-    */
+    	* @brief '=' Overload
+    	*
+    	* Overload '=' operator to replace the content with the copy of the alterable content of other list
+    	*
+    	* @param rhs list object
+    	*
+    	* @return Return the new content from other list
+    	*/
 		list & operator=(const list &);
 		/*!
 		* @brief '=' Overload
-		 *
-		 * Overload '=' operator to replace the content with the copy of the alterable content of initializer_list
-		 *
-		 * @param ilist initializer_list object
-		 *
-		 * @return Return the new content from initializer_list
-		 */
+		*
+		* Overload '=' operator to replace the content with the copy of the alterable content of initializer_list
+		*
+		* @param ilist initializer_list object
+		*
+		* @return Return the new content from initializer_list
+		*/
 		list & operator=(std::initializer_list<T> ilist);
 		/*!
 		* @brief Begin
@@ -287,10 +288,10 @@ namespace ls{
 		*/
 		bool empty() const;
 		/*!
-	  * @brief Clear
-	  *
-	  * Remove all elements from the list
-	  */
+	  	* @brief Clear
+	  	*
+	  	* Remove all elements from the list
+	  	*/
 		void clear();
 		/*!
 		* @brief Front
@@ -317,29 +318,29 @@ namespace ls{
 		*/
 		const T & back() const;
 		/*!
-    * @brief Push Front
+    	* @brief Push Front
 		*
-    * Adds value to the front of the list
-    *
-    * @param value value to be added
-    *
-    */
+    	* Adds value to the front of the list
+    	*
+    	* @param value value to be added
+    	*
+    	*/
 		void push_front(const T & value);
 		/*!
-    * @brief Push Back
-    *
-    * Adds value to the end of the list
-    *
-    * @param value value to be added
-    *
-    */
+    	* @brief Push Back
+    	*
+    	* Adds value to the end of the list
+    	*
+    	* @param value value to be added
+    	*
+    	*/
 		void push_back(const T & value);
 		/*!
-  	* @brief Pop Front
-    *
-    * Delete value at front of the list
-    *
-    */
+  		* @brief Pop Front
+    	*
+    	* Delete value at front of the list
+    	*
+    	*/
 		void pop_front();
 		/*!
 		* @brief Pop Back
@@ -349,14 +350,14 @@ namespace ls{
 		*/
 		void pop_back();
 		/*!
-    * @brief Assign
-    *
-    * Replaces the contents with count copies of value value
-    *
-    * @param value number os values
+    	* @brief Assign
+    	*
+    	* Replaces the contents with count copies of value value
+    	*
+    	* @param value number os values
 		* @param value number os values
-    */
-		void assign(size_t count,const T& value);
+    	*/
+		void assign(const T& value);
 		/*!
 		* @brief Assign
 		*
@@ -368,12 +369,12 @@ namespace ls{
 		template <class InItr>
 		void assign (InItr first, InItr last);
 		/*!
-    * @brief Assign
-    *
-    * Replaces the contents of the list with the elements from the initializer list ilist .
-    *
-    * @param ilist initializer list
-    */
+    	* @brief Assign
+    	*
+    	* Replaces the contents of the list with the elements from the initializer list ilist .
+    	*
+    	* @param ilist initializer list
+    	*/
 		void assign (std::initializer_list<T> ilist);
 		/*!
 		* @brief Insert
@@ -462,7 +463,19 @@ namespace ls{
 		* @return Return true if  two lists are differents
 		*/
 		bool operator!=(const list & rhs);
+		/*! 
+        * @brief '<<' Operator
+        *
+        * Prints the list on the out stream
+        *
+        * @param os reference of output stream
+        * @param v_ reference of list object
+        *
+        * @return Return ostream output stream
+        */
 
+        template <typename U>
+        friend std::ostream & operator<<( std::ostream & os_, const list<T> & v_ );
 
 	};
 }

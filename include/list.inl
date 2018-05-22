@@ -12,7 +12,7 @@ namespace ls{
     }
 
     template<typename T>
-    list<T>::list( size_t count ): m_size (count),
+    list<T>::list( size_t count ): m_size (0),
                           m_head (new Node()),
                           m_tail (new Node()) {
       m_head->prev = nullptr;
@@ -27,7 +27,7 @@ namespace ls{
 
     template <typename T>
     template <typename InputItr>
-		list<T>::list(InputItr first, InputItr last): m_size ((last - first)),
+		list<T>::list(InputItr first, InputItr last): m_size (0),
                           m_head (new Node()),
     	                    m_tail (new Node()){
     m_head->prev = nullptr;
@@ -45,7 +45,7 @@ namespace ls{
 
     template <typename T>
     list<T>::list(std::initializer_list<T> ilist ) :
-                   m_size (ilist.size()),
+                   m_size (0),
                    m_head (new Node()),
                    m_tail (new Node()) {
 
@@ -79,18 +79,18 @@ namespace ls{
     	m_tail->next = nullptr;
     	m_head->next = m_tail;
     	m_tail->prev = m_head;
-    	m_size = other.size();
+    	m_size = 0;
         for(const_iterator iter = other.cbegin(); iter != other.cend(); iter++){
-            push_front( (*iter)->data );
+            push_back( (*iter)->data );
         }
     }
 
     template <typename T>
     typename list<T>::list & list<T>::operator=( const list<T> & other){
         clear();
-        m_size = other.size();
+        m_size = 0;
         for(const_iterator iter = other.cbegin(); iter != other.cend(); iter++){
-            push_front( (*iter)->data );
+            push_back( (*iter)->data );
         }
         return *this;
     }
@@ -139,8 +139,9 @@ namespace ls{
 
     template <typename T>
     void list<T>::clear(){
-        while(m_head->next != m_tail)
+        while(m_head->next != m_tail){
             pop_back();
+        }
     }
 
     template <typename T>
@@ -210,11 +211,10 @@ namespace ls{
     }
 
     template <typename T>
-    void list<T>::assign(size_t count,const T& value){
-        typename list<T>::iterator temp = begin();
-        for(size_t i = 0; i < count; i++){
+    void list<T>::assign(const T& value){
+        typename list<T>::iterator temp;
+        for(temp = begin();temp!=end(); temp++){
             (*temp)->data = value;
-            temp++;
         }
     }
 

@@ -14,8 +14,8 @@ int main(){
 
 
         ls::list<int> mylist;
-        int foo [5] = { 16, 2, 77, 40, 12071 };
-        ls::list<int> l1(&foo[0],&foo[3]);
+        //int foo [5] = { 16, 2, 77, 40, 12071 };
+        //ls::list<int> l1(&foo[0],&foo[3]);
         ls::list<int>::iterator iter;
         ls::list<int>::iterator iter2;
         mylist.push_back(1);
@@ -26,6 +26,8 @@ int main(){
         mylist.push_back(6);
         mylist.push_back(7);
         mylist.push_back(8);
+        mylist.pop_back();
+        mylist.pop_front();
         mylist.push_front(30);
         mylist.insert(iter,80);
         iter = mylist.begin();
@@ -33,8 +35,8 @@ int main(){
         iter++;
         iter++;
         iter2++;
-        mylist.assign(size_t(5),10);
-        //std::cout << ' ' <<  (my_list2==my_list3)<< std::endl;
+        std::cout << " size = " << mylist.size()<< std::endl;
+
 
         std::cout << "mylist contains:";
         for (ls::list<int>::iterator it=mylist.begin(); it!=mylist.end(); it++)
