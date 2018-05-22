@@ -474,9 +474,6 @@ namespace ls{
         * @return Return ostream output stream
         */
 
-        template <typename U>
-        friend std::ostream & operator<<( std::ostream & os_, const list<T> & v_ );
-
 	};
 }
 
